@@ -7,8 +7,9 @@ class AuthorizationInterceptor extends Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     var token = await getToken();
-    options.headers['token'] = token;
-    options.headers['Authorization'] = token;
+    // options.headers['token'] = token;
+    options.headers['Authorization'] = "Bearer $token";
+
     super.onRequest(options, handler);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../data/model/login_body_mode.dart';
+import '../data/login_models/login_body_mode.dart';
 
 abstract class AuthEvent extends Equatable {
   @override
@@ -13,3 +13,5 @@ class LoginAuthEvent extends AuthEvent {
 
   LoginAuthEvent({required this.loginBodyModel});
 }
+
+class CheckLoginAuthEvent extends AuthEvent {}

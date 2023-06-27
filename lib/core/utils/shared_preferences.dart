@@ -4,7 +4,7 @@ import '../../main.dart';
 import 'const.dart';
 
 Future<String> getToken() async {
-  return await sharedFunction.getShared(PrefKeys.accessToken) ?? "";
+  return await sharedFunction.getShared(PrefKeys.accessToken);
 }
 
 class SharedFunction {

@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'customers_page.dart';
 
-class CustomersPage extends StatefulWidget {
-  const CustomersPage({Key? key}) : super(key: key);
+class CustomersLayoutPage extends StatefulWidget {
+  const CustomersLayoutPage({Key? key}) : super(key: key);
 
   @override
-  State<CustomersPage> createState() => _CustomersPageState();
+  State<CustomersLayoutPage> createState() => _CustomersLayoutPageState();
 }
 
-class _CustomersPageState extends State<CustomersPage> {
+class _CustomersLayoutPageState extends State<CustomersLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class _CustomersPageState extends State<CustomersPage> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(50),
                       bottomLeft: Radius.circular(50))),
-              child: Placeholder(),
+              child: CustomersPage(),
             ),
           )
         ],

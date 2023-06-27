@@ -16,8 +16,15 @@ class $AssetsImagesGen {
   AssetGenImage get authMain =>
       const AssetGenImage('assets/images/authMain.png');
 
+  /// File path: assets/images/card.png
+  AssetGenImage get card => const AssetGenImage('assets/images/card.png');
+
+  /// File path: assets/images/defaultProfilePic.png
+  AssetGenImage get defaultProfilePic =>
+      const AssetGenImage('assets/images/defaultProfilePic.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [authMain];
+  List<AssetGenImage> get values => [authMain, card, defaultProfilePic];
 }
 
 class Assets {

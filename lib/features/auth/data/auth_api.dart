@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import '../../../core/network/interceptors/header_interceptor.dart';
 import '../../../core/network/interceptors/logger_interceptor.dart';
 import '../../../core/utils/const.dart';
-import 'model/login_body_mode.dart';
-import 'model/login_model.dart';
+import 'login_models/login_body_mode.dart';
+import 'login_models/login_model.dart';
 
 class DioAuth {
   final Dio _dio;
@@ -18,7 +18,7 @@ class DioAuth {
           ),
         )..interceptors.addAll([
             LoggerInterceptor(),
-            HeaderInterceptor(),
+            HeaderInterceptor(hasTerminalKey: false),
           ]);
 
   Future<LoginModel> login({required LoginBodyModel loginBodyModel}) async {

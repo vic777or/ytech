@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:ytech/features/auth/bloc/auth_event.dart';
 
 import '../../../custom_widgets/customized_text_field/customized_text_field.dart';
 import '../../../gen/assets.gen.dart';
 import '../bloc/auth_bloc.dart';
+import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
 import '../data/auth_api.dart';
-import '../data/model/login_body_mode.dart';
+import '../data/login_models/login_body_mode.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -25,10 +25,9 @@ class _LogInPageState extends State<LogInPage> {
   final AuthBloc _authBloc = AuthBloc(DioAuth());
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     userNameController.dispose();
     _authBloc.close();
+    super.dispose();
   }
 
   callAuthBloc() {
@@ -47,12 +46,17 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => _authBloc,
+      create: (context) => _authBloc..add(CheckLoginAuthEvent()),
       child: Scaffold(
         body: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
+            if (state is AuthStateCheckLogIn) {
+              if (state.isLoggedIn) {
+                context.go('/CustomersLayoutPage');
+              }
+            }
             if (state is AuthStateLoaded) {
-              context.go('/CustomersPage');
+              context.go('/CustomersLayoutPage');
             }
           },
           builder: (context, state) {
@@ -120,10 +124,10 @@ class _LogInPageState extends State<LogInPage> {
                   ],
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
+                  height: MediaQuery.of(context).size.height / 1.5,
                   child: Image.asset(
                     Assets.images.authMain.path,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitHeight,
                   ),
                 )
               ],
